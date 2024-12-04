@@ -11,6 +11,11 @@ class ImageModule:
         self.save_filename = image_path
 
     def load(self) -> None:
+        """
+        
+        Args
+        
+        """
         self.__instance_image: ImageType = Image.open(self.__image_path).convert('L')
 
     def show(self) -> None:
