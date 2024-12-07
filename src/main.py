@@ -13,6 +13,7 @@ def main():
     hough_transform = HoughTransformModule(edges, original.copy())
     result_image, line_count = hough_transform.hough_line(threshold)
 
+    cv2.imshow(f"Edge Detection", edges)
     cv2.imshow(f"Detected Lines: {line_count}", result_image)
     cv2.waitKey(0)
     cv2.destroyAllWindows()
