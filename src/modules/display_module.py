@@ -1,20 +1,23 @@
 import matplotlib.pyplot as plt
+import matplotlib.axes as axes
 import numpy as np
 import cv2
 
 class DisplayModule:
-    def __init__(self, titles: tuple[str] | str, images: tuple[np.ndarray] | np.ndarray) -> None:
-        plt.figure(figsize=(15, 8))
-        self.__titles = titles
-        self.__images = images
+    def __init__(self, figsize: tuple[int] = (19, 8)) -> None:
+        self.__fig, self.__axs = plt.subplots(3, 4, figsize=figsize)
+        self.__set_figure_size()
 
-    def __preparing(self, pos: int, title: str, img: np.ndarray) -> None:
-        plt.subplot(1, len(self.__images), pos)
-        plt.title(title)
-        plt.imshow(cv2.cvtColor(img, cv2.COLOR_BGR2RGB))
+    def __set_figure_size(self) -> None:
+        self.__fig.set_figwidth(10)
+        self.__fig.set_figheight(5)
+
+    def load(self, titles: tuple[str] | str, images: tuple[np.ndarray] | np.ndarray, row: int) -> None:
+        for i in range(len(images)):
+            self.__axs[row-1, i].set_title(titles[i])
+            self.__axs[row-1, i].imshow(cv2.cvtColor(images[i], cv2.COLOR_BGR2RGB))
+            self.__axs[row-1, i].axis('off')
+            
 
     def show(self) -> None:
-        for i in range(len(self.__images)):
-            self.__preparing(i + 1, self.__titles[i], self.__images[i])
-
         plt.show()
