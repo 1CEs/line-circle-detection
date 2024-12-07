@@ -4,13 +4,16 @@ import numpy as np
 import cv2
 
 class DisplayModule:
-    def __init__(self, figsize: tuple[int] = (19, 8)) -> None:
+    def __init__(self, name: str, figsize: tuple[int] = (19, 8)) -> None:
         self.__fig, self.__axs = plt.subplots(3, 4, figsize=figsize)
-        self.__set_figure_size()
+        self.__figure_setup(name)
 
-    def __set_figure_size(self) -> None:
+    def __figure_setup(self, name) -> None:
+        self.__fig.canvas.manager.set_window_title(name)
+
         self.__fig.set_figwidth(10)
         self.__fig.set_figheight(5)
+        
 
     def load(self, titles: tuple[str] | str, images: tuple[np.ndarray] | np.ndarray, row: int) -> None:
         for i in range(len(images)):
