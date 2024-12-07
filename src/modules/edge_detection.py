@@ -21,7 +21,7 @@ class EdgeDetectionModule:
         return grad
 
     def canny(self) -> np.ndarray:
-        return cv2.Canny(self.__gs_img, 0, 255)
+        return cv2.Canny(self.__gs_img, 50, 150)
 
     def prewitt(self) -> np.ndarray:
         kernelx = np.array([[1, 1, 1], [0, 0, 0], [-1, -1, -1]])
