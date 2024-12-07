@@ -24,3 +24,14 @@ class HoughTransformModule:
             cv2.line(self.__image, (x1, y1), (x2, y2), (255, 0, 0), 2)
         
         return self.__image, len(lines)
+    
+    def hough_circle(self) -> np.ndarray:
+        circles = cv2.HoughCircles(self.__edge, cv2.HOUGH_GRADIENT, 1.3, 30, param1=150, param2=70, minRadius=0, maxRadius=0)
+
+        circles = np.uint16(np.around(circles))
+
+        for c in circles[0, :]:
+            cv2.circle(self.__image, (c[0], c[1]), c[2], (0, 255, 0), 3)
+            cv2.circle(self.__image, (c[0], c[1]), 1, (0, 0, 255), 5)
+
+        return self.__image
