@@ -1,6 +1,9 @@
 import cv2
 from modules.edge_detection import EdgeDetectionModule
 from modules.hough_transform import HoughTransformModule
+from modules.display_module import DisplayModule
+import matplotlib.pyplot as plt
+import numpy as np
 
 def main():
     original = cv2.imread('./images/line.jpg', cv2.IMREAD_COLOR)
@@ -8,15 +11,18 @@ def main():
 
     edge_detector = EdgeDetectionModule(grayscale)
     edges = edge_detector.canny()
-    threshold = edge_detector.get_threshold()
 
     hough_transform = HoughTransformModule(edges, original.copy())
-    result_image, line_count = hough_transform.hough_line(threshold)
+    result_image, line_count = hough_transform.hough_line(255, 85)
 
-    cv2.imshow(f"Edge Detection", edges)
-    cv2.imshow(f"Detected Lines: {line_count}", result_image)
-    cv2.waitKey(0)
-    cv2.destroyAllWindows()
+    display = DisplayModule((
+        "Original Image", 
+        "Grayscale Image", 
+        "Edge Detected Image", 
+        f"Hough Line Image: {line_count} Lines"
+    ), (original, grayscale, edges, result_image))
+
+    display.show()
 
 if __name__ == "__main__":
     main()

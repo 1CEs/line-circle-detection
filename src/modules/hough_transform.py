@@ -11,9 +11,9 @@ class HoughTransformModule:
         self.__edge = edge
         self.__image = original_image
 
-    def hough_line(self, t: int) -> tuple[np.ndarray, int]:
+    def hough_line(self, div: int, threshold: int) -> tuple[np.ndarray, int]:
 
-        lines = cv2.HoughLinesP(self.__edge, rho = 1, theta = 1*np.pi/180, threshold=t, minLineLength = 1, maxLineGap = 1)
+        lines = cv2.HoughLinesP(self.__edge, rho = 1, theta = 1*np.pi/div, threshold=threshold, minLineLength = 50, maxLineGap = 10)
         
         if lines is None:
             print("No lines detected.")
@@ -21,6 +21,6 @@ class HoughTransformModule:
 
         for line in lines:
             x1, y1, x2, y2 = line[0]
-            cv2.line(self.__image, (x1, y1), (x2, y2), (255, 0, 0), 10)
+            cv2.line(self.__image, (x1, y1), (x2, y2), (255, 0, 0), 2)
         
         return self.__image, len(lines)
