@@ -6,9 +6,9 @@ from modules.display_module import DisplayModule
 def run() -> None:
     ed_parameter: dict = {
         "canny": [(50, 120, "line"), (120, 120, "circle")],
-        "sobel": [((3, 3), 90, 150, "line"), ((7, 7), 69, 255, "circle")],
-        "robert": [((7, 7), 124, 255, "line"), ((5, 5), 30, 255, "circle")],
-        "prewitt": [((3, 3), 35, 255), ((9, 9), 45, 255)],
+        "sobel": [((3, 3), 90, 150, "line"), ((5, 5), 86, 255, "circle")],
+        "robert": [((7, 7), 124, 255, "line"), ((5, 5), 35, 255, "circle")],
+        "prewitt": [((3, 3), 35, 255), ((3, 3), 60, 60)],
     }  # Parameters for each method
 
     hl_parameter = {
