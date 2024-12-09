@@ -10,7 +10,7 @@ class HoughTransformModule:
     def hough_line(self, div: int, threshold: int, minLineLength: int, maxLineGap: int) -> tuple[np.ndarray, int]:
         
         lines = cv2.HoughLinesP(
-            self.__edge, 
+            self.__edge,
             rho = 1, 
             theta = np.pi/div, 
             threshold=threshold, 
@@ -35,10 +35,10 @@ class HoughTransformModule:
             cv2.HOUGH_GRADIENT,
             dp=1.05,
             minDist=20,
-            param1=50,
+            param1=80,
             param2=30,
-            minRadius=10,
-            maxRadius=75,
+            minRadius=9,
+            maxRadius=70,
         )
 
         count_circle: int = 0
