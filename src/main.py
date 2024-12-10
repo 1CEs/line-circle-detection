@@ -3,7 +3,7 @@ from modules.edge_detection import EdgeDetectionModule
 from modules.hough_transform import HoughTransformModule
 from modules.display_module import DisplayModule
 
-def run() -> None:
+def main() -> None:
     ed_parameter: dict = {
         "canny": [(50, 120, "line"), (120, 120, "circle")],
         "sobel": [((3, 3), 90, 150, "line"), ((5, 5), 86, 255, "circle")],
@@ -18,7 +18,7 @@ def run() -> None:
         "prewitt": (220, 50, 85, 5)
     }
 
-    for case in [ "circle"]:
+    for case in ["line", "circle"]:
         for method_name in dir(EdgeDetectionModule):
             if method_name.startswith("__"): 
                 continue
@@ -46,9 +46,6 @@ def run() -> None:
                     ), (original, grayscale, edges, result_image), i)
 
                 display.show()
-
-def main() -> None:
-    run()
 
 if __name__ == "__main__":
     main()
