@@ -34,9 +34,9 @@ class HoughTransformModule:
             self.__edge,
             cv2.HOUGH_GRADIENT,
             dp=1.05,
-            minDist=20,
+            minDist=23,
             param1=80,
-            param2=30,
+            param2=29,
             minRadius=9,
             maxRadius=70,
         )
