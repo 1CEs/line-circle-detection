@@ -43,6 +43,7 @@ class DisplayModule:
             self.__axs[row-1, i].imshow(cv2.cvtColor(images[i], cv2.COLOR_BGR2RGB))  # Convert BGR to RGB
             self.__axs[row-1, i].axis('off')  # Turn off axes for a cleaner display
 
+
     def show(self) -> None:
         """
         Displays the figure with all the loaded images and titles.
